@@ -1,0 +1,23 @@
+];
+    var out = document.getElementById('out');
+    var htmls = [];
+    for(var i = 0;i < arr.length; i++){
+        var item = arr[i];
+        if(item.match(/^\d+\s/)){
+            var num = item.match(/^\d+\s/)[0];
+            var url = item.replace(num,'').replace(/(cf:)|(cl:)|(cn:)|(cp:)|(ef:)|(el:)|(en:)|(ep:)/,'');
+
+            var img = new Image();
+            img.onload = function() { img = null; };
+            img.src = url;
+
+            htmls.push('<div><em>' + num + '</em><img src="' + url + '"/></div>');
+        }
+    }
+    out.innerHTML = htmls.join('');
+    
+    var title = /hl\/cl-/.test(location.pathname) ? '周边列表点击' : /hl\/cn-/.test(location.pathname) ? '后贴广告点击' : /hl\/cf-/.test(location.pathname) ? '开屏广告点击' : '暂停广告点击';
+    document.title = title;
+</script>
+</body>
+</html>
