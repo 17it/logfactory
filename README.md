@@ -10,4 +10,4 @@
 
 
 auto.sh为自动执行的脚本，与业务没有直接联系
-更详细的使用见 todo
+更详细的使用见 https://17it.github.io/2018/01/09/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%8C%EF%BC%89/
