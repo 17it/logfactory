@@ -1,5 +1,11 @@
 #!/bin/bash
 
+echo -e '\n'
+echo -e '\n'
+echo -e '\n'
+echo '---------------------------------------start---------------------------------------'
+echo -e '\n'
+
 filename=`ls -l /root/study/log-backup/ | tail -n 1 | awk '{print $9}'`
 echo $filename
 
@@ -21,4 +27,9 @@ echo 'gen htmls success'
 rm -f /root/study/logfactory/out_log.log
 echo 'remove old log file success'
 
-echo 'all end'
+echo -e '\n'
+echo '---------------------------------------end---------------------------------------'
+echo -e '\n'
+echo -e '\n'
+echo -e '\n'
+
