@@ -2,22 +2,22 @@
     var out = document.getElementById('out');
     var htmls = [];
     for(var i = 0;i < arr.length; i++){
-        var item = arr[i];
+    	var item = arr[i];
         if(item.match(/^\d+\s/)){
             var num = item.match(/^\d+\s/)[0];
             var url = item.replace(num,'').replace(/(cf:)|(cl:)|(cn:)|(cp:)|(ef:)|(el:)|(en:)|(ep:)/,'');
-            
-            if(url){
-                var src = url.split('&&&')[0] || '';
-                var title = url.split('&&&')[1] || '';
-                title = title == 'undefined' ? '' : title;
+	    
+	    if(url){
+		var src = url.split('&&&')[0] || '';
+		var title = url.split('&&&')[1] || '';
+		title = title == 'undefined' ? '' : title;
 
-                var img = new Image();
-                img.onload = function() { img = null; };
-                img.src = src;
+		var img = new Image();
+            	img.onload = function() { img = null; };
+            	img.src = src;
 
-                htmls.push('<div><span>'+ title +'</span><em>' + num + '</em><img src="' + url + '"/></div>');
-            }
+            	htmls.push('<div><span>'+ title +'</span><em>' + num + '</em><img src="' + url + '"/></div>');
+	    }
         }
     }
     out.innerHTML = htmls.join('');
@@ -27,3 +27,4 @@
 </script>
 </body>
 </html>
+
