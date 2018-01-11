@@ -6,12 +6,18 @@
         if(item.match(/^\d+\s/)){
             var num = item.match(/^\d+\s/)[0];
             var url = item.replace(num,'').replace(/(cf:)|(cl:)|(cn:)|(cp:)|(ef:)|(el:)|(en:)|(ep:)/,'');
+            
+            if(url){
+                var src = url.split('&&&')[0] || '';
+                var title = url.split('&&&')[1] || '';
+                title = title == 'undefined' ? '' : title;
 
-            var img = new Image();
-            img.onload = function() { img = null; };
-            img.src = url;
+                var img = new Image();
+                img.onload = function() { img = null; };
+                img.src = src;
 
-            htmls.push('<div><em>' + num + '</em><img src="' + url + '"/></div>');
+                htmls.push('<div><span>'+ title +'</span><em>' + num + '</em><img src="' + url + '"/></div>');
+            }
         }
     }
     out.innerHTML = htmls.join('');
