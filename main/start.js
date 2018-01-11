@@ -1,3 +1,4 @@
+var fs = require("fs");
 var path = require('path');
 var files = ['cf','cl','cn','cp'];
 var args = process.argv.splice(2);
@@ -26,7 +27,7 @@ var transFile = {
         var self = this;
         var filename = path.join(__dirname, '../src/') + self.name;
         var exec = require('child_process').exec;
-        var cmdstr = "cat " + path.join(__dirname, "../out_log.log") + " | grep " + self.name + ":http > " + filename + "-first.log && sed 's/^....\-..\-.. ..\:..\: //g' " + filename + "-first.log > " + filename + "-second.log && sort " + filename + "-second.log > " + filename + "-tmp.log && uniq -c " + filename + "-tmp.log > " + filename + "-uniq.log && sort -nr " + filename + "-uniq.log > " + filename + "-first.log && sed -e 's/ *$/\",/' " + filename + "-first.log > " + filename + "-second.log && sed -e 's/^  */\"/' " + filename + "-second.log > " + filename + ".log && rm -f " + filename + "-*.log";
+        var cmdstr = "cat " + path.join(__dirname, "../out_log.log") + " | grep " + self.name + ":http > " + filename + "-first.log && sed 's/^....\-..\-.. ..\:..\: //g' " + filename + "-first.log > " + filename + "-one.log && sed -e 's/\&\&\&undefined//' " + filename + "-one.log > " + filename + "-second.log && sort " + filename + "-second.log > " + filename + "-tmp.log && uniq -c " + filename + "-tmp.log > " + filename + "-uniq.log && sort -nr " + filename + "-uniq.log > " + filename + "-first.log && sed -e 's/ *$/\",/' " + filename + "-first.log > " + filename + "-second.log && sed -e 's/^  */\"/' " + filename + "-second.log > " + filename + ".log && rm -f " + filename + "-*.log";
         console.log(cmdstr);
         files.splice(0, 1);
         exec(cmdstr, function(err,stdout,stderr){
@@ -47,17 +48,25 @@ var transFile = {
         var exec = require('child_process').exec;
         var datetxt = ft((new Date().getTime() - 24 * 60 * 60 * 1000) / 1000, 'YYYY-mm-DD').replace(/-/g,'');
         var dir = path.join(__dirname, '../backup/') + datetxt;
-        var cmdstr = 'mkdir ' + dir + ' && cp ' + path.join(__dirname, '../src/') + '*.log ' + dir;
-        exec(cmdstr, function(err,stdout,stderr){
-            if(err) {
-                console.log('cp *.log error: '+ stderr);
-                return;
+        var cmdstr = '';
+	fs.exists(dir + '', function(exists){
+            if(exists){
+                cmdstr = 'rm -rf ' + dir + ' && mkdir ' + dir + ' && cp ' + path.join(__dirname, '../src/') + '*.log ' + dir;
+            } else {
+                cmdstr = 'mkdir ' + dir + ' && cp ' + path.join(__dirname, '../src/') + '*.log ' + dir;
             }
-            console.log(stdout);
-            console.log('...............................sed logs end....................................');
-            console.log('............................start general htmls.................................');
-            _this.genHtmls();
-        });
+	
+            exec(cmdstr, function(err,stdout,stderr){
+                if(err) {
+                    console.log('cp *.log error: '+ stderr);
+                    return;
+                }
+                console.log(stdout);
+                console.log('...............................sed logs end....................................');
+                console.log('............................start general htmls.................................');
+                _this.genHtmls();
+            });
+	});
     },
     genHtmls: function(){
         var _this = this;
