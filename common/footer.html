@@ -1,6 +1,8 @@
-
 ];
     var out = document.getElementById('out');
+    if(/hl\/cf-/.test(location.pathname) || /hl\/ef-/.test(location.pathname)) {
+        out.className = 'wild';
+    }
     var htmls=[], res = [], srcs = [];
     for(var h = 0; h < arr.length; h++){
         var item = arr[h];
