@@ -1,6 +1,6 @@
 var fs = require("fs");
 var path = require('path');
-var files = ['cf','cl','cn','cp'];
+var files = ['cf','cl','cn','cp','ep','el','en','ef'];
 var args = process.argv.splice(2);
 var ft = require('../util/formatTime');
 
