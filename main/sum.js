@@ -14,7 +14,7 @@ var transFile = {
         var _dir = path.join(__dirname, '../main/');
         var exec = require('child_process').exec;
         // "sort -k 2 -t '-' " + _dir + "_sum.log > " + _dir + "_year.log
-        var cmdstr = "ls -l " + path.join(__dirname, '../../hl') + " | awk '{print$9}' > _sum.log && sed -e 's/ *$/\",/' " + _dir + "_sum.log > " + _dir + "_sum-second.log && sed -e 's/^/\"/' " + _dir + "_sum-second.log > " + _dir + "_sum.log";
+        var cmdstr = "ls -l " + path.join(__dirname, '../../hl') + " | awk '{print$9}' > " + _dir + "_sum.log && sed -e 's/ *$/\",/' " + _dir + "_sum.log > " + _dir + "_sum-second.log && sed -e 's/^/\"/' " + _dir + "_sum-second.log > " + _dir + "_sum.log";
         
         console.log(cmdstr);
         exec(cmdstr, function(err,stdout,stderr){

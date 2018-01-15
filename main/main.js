@@ -59,12 +59,13 @@ var genHtmls = {
                         }else {
                             console.log('...............................create html done....................................');
                             var exec = require('child_process').exec;
-                            var cmdstr = 'rm -f ' + path.join(__dirname, '../src/*.log');
+                            var cmdstr = 'rm -f ' + path.join(__dirname, '../src/*.log')  + ' && node ' + path.join(__dirname, 'sum.js');
                             exec(cmdstr, function(err,stdout,stderr){
                                 if(err) {
                                     console.log('remove *.logs error: '+ stderr);
                                     return;
                                 }
+				console.log(stdout);
                                 console.log('remove *.logs success');
                             });
                         }
