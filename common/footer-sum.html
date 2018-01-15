@@ -1,0 +1,65 @@
+];
+    var sum = {
+        init: function(){
+            this.type = '';
+            this.cats = {};
+            this.days = {};
+            this.el = document.getElementById('out');
+            this.alias = {
+                'cf':'弹屏广告点击','cl':'电视剧周边广告点击','cn':'后贴广告点击','cp':'暂停广告点击',
+                'ef':'弹屏广告曝光','el':'电视剧周边广告曝光','en':'后贴广告曝光','ep':'暂停广告曝光'
+            };
+        },
+        deal: function(type){
+            this.init();
+            for(var i = 0; i < arr.length; i++){
+                var item = arr[i];
+                if(item) {
+                    var _m = item.match(/^([a-zA-Z]{2})\-(\d{4}\-\d{2}\-\d{2})/);
+                    this.cats[_m[1]] = (this.cats && this.cats[_m[1]] || []).concat(_m[2]);
+                    this.days[_m[2]] = (this.days && this.days[_m[2]] || []).concat(_m[1]);
+                }
+            }
+            type && this.show(type);
+        },
+        show: function(type){
+            this.type = type || 'cats';
+            var htmls = [];
+            if(!this.cats || !this.days){
+                this.deal(this.type);
+            }else{
+                var data = this[this.type];
+                data = this.sort(data);
+                for(var d in data){
+                    if(data[d] && data.hasOwnProperty(d)){
+                        htmls.push('<div><h4>'+ (this.alias[d] || d) +'</h4><ul>');
+                        for(var j = 0;j < data[d].length; j++){
+                            var url = this.type === 'cats' ? d + '-' + data[d][j] : data[d][j] + '-' + d;
+                            var name = this.alias[data[d][j]] || data[d][j];
+                            htmls.push('<li><a target="_blank" href="../hl/'+ url +'.html">' + name + '</a></li>');
+                        }
+                        htmls.push('</ul></div>');
+                    }
+                }
+                this.el.innerHTML = htmls.join('');
+            }
+        },
+        sort: function(data){
+            var res = {};
+            var keys = Object.keys(data).sort();
+            for(var i = 0; i < keys.length; i++) {
+                res[keys[i]] = data[keys[i]];
+            }
+            return res;
+        },
+        change: function(){
+            this.type = this.type === 'cats' ? 'days' : 'cats';
+            this.show(this.type);
+        }
+    };
+
+    sum.show();
+</script>
+</body>
+</html>
+    
