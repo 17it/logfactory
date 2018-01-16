@@ -98,9 +98,11 @@
                     break;
                 }
 
-                htmls.push('<div><span>'+ item.title +'</span><em>' + nums.join('/') + '</em><img src="' + item.src + '"/></div>');
+                htmls.push('<div><span>'+ item.title +'</span><em>' + nums.join('/'));
+                htmls.push('</em><img width="100%" height="auto" data-original="' + item.src + '"/></div>');
             }
             out.innerHTML = htmls.join('');
+            $("img").lazyload({effect: "fadeIn", placeholder : "../sum/load.gif",});
         },
         redirect: function (alias) {
             alias = alias || 'ef';
@@ -140,7 +142,10 @@
         }
     };
 
-    util.init();
+    $(function() {
+        util.init();
+        $("img").lazyload({effect: "fadeIn", placeholder : "../sum/load.gif",});
+    });
 </script>
 </body>
 </html>
