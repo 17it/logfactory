@@ -14,7 +14,7 @@
         prop: function () {
             var cop = document.getElementById('cop');
             var as = cop.getElementsByTagName('a');
-            var hasbefore = new Date(this.cur[1] + ' 00:00:00').getTime() >= new Date(this.min_date + ' 00:00:00').getTime();
+            var hasbefore = new Date(this.cur[1] + ' 00:00:00').getTime() > new Date(this.min_date + ' 00:00:00').getTime();
             var hasafter = new Date(this.cur[1] + ' 23:59:59').getTime() + 86400000 <= new Date().getTime();
             console.log(hasbefore, hasafter);
 

@@ -27,7 +27,7 @@ var genHtmls = {
         this.filename = path.join(__dirname, '../src', this.name + '.log');
         this.exp_filename = /^e/.test(name) ? path.join(__dirname, '../src', name.replace('e', 'c') + '.log') : null;
         this.timeext = ft((new Date().getTime() - 24 * 60 * 60 * 1000) / 1000, 'YYYY-mm-DD');
-        this.dstname = path.join(__dirname, '../../hl', this.name + '-' + this.timeext  + '.html');
+        this.dstname = path.join(__dirname, '../../hl', this.name + '-' + this.timeext + '.html');
 
         if(!head) {
             fs.readFile(path.join(__dirname,'../common/head.html'), 'utf-8', function (err, data) {
