@@ -9,13 +9,13 @@
         img { width: 100%;vertical-align: top; }
         #out div { width: 15%;display: inline-block;border: 1px solid #0006;margin: 5px;position: relative;min-height: 100px; }
         .wild #out div { width: 10%; }
-        #out div em { position: absolute;left: 0;top: 0;color: #fff;background-color: #00000099;font-size: 14px;font-style: normal;padding: 2px 5px;border-radius: 0 3px 3px 0; }
-        #out div span { position: absolute;bottom:0; left: 0; font-size: 13px;color: #fff;background-color: #00000099;width: 100%;text-align: left;padding:0 10px;box-sizing: border-box;/*display: none;*/ }
+        #out div em { position: absolute;left: 0;top: 0;color: #fff;background-color: #000000;opacity: 0.8;font-size: 14px;font-style: normal;padding: 2px 5px;border-radius: 0 3px 3px 0; }
+        #out div span { position: absolute;bottom:0; left: 0; font-size: 13px;color: #fff;background-color: #000000;opacity: 0.8;width: 100%;text-align: left;padding:0 10px;box-sizing: border-box;/*display: none;*/ }
         #out div:hover span { display: inline-block; }
         .cop { width: 100%; min-height: 38px;}
         .cop div { padding: 0 calc(5% - 35px); }
         .wild .cop div { padding: 0 calc(5% - 55px); }
-        .cop a { cursor: pointer;  padding: 3px 10px; color: #fff; border-radius: 3px; text-align: left; float: right;margin: 5px; }
+        .cop a { cursor: pointer;  padding: 3px 10px; color: #fff; border-radius: 3px; text-align: left; float: right;margin: 5px; display: inline-block; }
         .cop a[type], .cop i { float: left; }
         .cop a.disabled { background-color: #eee !important;  cursor: auto; }
     </style>
@@ -27,8 +27,8 @@
             <a type="ef" onclick="util.redirect('ef')">弹屏广告</a>
             <a type="el" onclick="util.redirect('el')">电视剧周边列表</a>
             <a type="ep" onclick="util.redirect('ep')">暂停广告</a>
-            <a type="before" onclick="util.day(-1)" style="margin-left: 100px;">前一天</a>
-            <a type="after" onclick="util.day(1)">后一天</a>
+            <a type="before" onclick="util.day(-1, this)" style="margin-left: 100px;">前一天</a>
+            <a type="after" onclick="util.day(1, this)">后一天</a>
             <a onclick="util.genHtmls('per')">按点击率排序</a>
             <a onclick="util.genHtmls('ck_num')">按点击量排序</a>
             <a onclick="util.genHtmls('num')">按曝光量排序</a>

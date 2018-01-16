@@ -3,7 +3,7 @@
         init: function () {
             this.click_arr = {};
             this.expose_arr = [];
-            this.min_date = '2018-01-14';
+            this.min_date = '2018/01/14';
             this.out = document.getElementById('out');
             this.reg = /(cf:)|(cl:)|(cn:)|(cp:)|(ef:)|(el:)|(en:)|(ep:)/;
             this.cur = location.pathname.match(/hl\/e[a-z]\-([\d-]+)\.html/);
@@ -14,8 +14,8 @@
         prop: function () {
             var cop = document.getElementById('cop');
             var as = cop.getElementsByTagName('a');
-            var hasbefore = new Date(this.cur[1] + ' 00:00:00').getTime() > new Date(this.min_date + ' 00:00:00').getTime();
-            var hasafter = new Date(this.cur[1] + ' 23:59:59').getTime() + 86400000 <= new Date().getTime();
+            var hasbefore = new Date(this.cur[1].replace(/-/g, '/') + ' 00:00:00').getTime() > new Date(this.min_date + ' 00:00:00').getTime();
+            var hasafter = new Date(this.cur[1].replace(/-/g, '/') + ' 23:59:59').getTime() + 86400000 <= new Date().getTime();
             console.log(hasbefore, hasafter);
 
             for(var t = 0; t < as.length; t++){
@@ -109,9 +109,9 @@
 
             location.pathname = location.pathname.replace(/hl\/(e[a-z])/, 'hl/' + alias);
         },
-        day: function (num) {
-            if('disabled' === event.target.classList.value){ return; }
-            var dst = new Date(this.cur[1] + ' 00:00:00').getTime() + num * 24 * 60 * 60 * 1000;
+        day: function (num, evt) {
+            if('disabled' === evt.className){ return; }
+            var dst = new Date(this.cur[1].replace(/-/g, '/') + ' 00:00:00').getTime() + num * 24 * 60 * 60 * 1000;
             dst = this.formatTime(dst / 1000, 'YYYY-mm-DD');
 
             location.pathname = location.pathname.replace(/([\d-]+)\.html/, '-' + dst + '.html');
