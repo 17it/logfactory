@@ -1,7 +1,9 @@
 ];
     var util = {
         init: function () {
-            this.click_arr = {};
+            this.ck_total = 0;
+	    this.ex_total = 0;
+	    this.click_arr = {};
             this.expose_arr = [];
             this.min_date = '2018/01/14';
             this.out = document.getElementById('out');
@@ -31,9 +33,9 @@
                 document.body.className = 'wild';
             }
 
-            var title = /hl\/cl-/.test(location.pathname) ? '周边列表点击'
-                : /hl\/cn-/.test(location.pathname) ? '后贴广告点击'
-                : /hl\/cf-/.test(location.pathname) ? '开屏广告点击' : '暂停广告点击';
+            var title = /hl\/el-/.test(location.pathname) ? '周边列表广告'
+                : /hl\/en-/.test(location.pathname) ? '后贴广告'
+                : /hl\/ef-/.test(location.pathname) ? '开屏广告' : '暂停广告';
             document.title = title;
         },
         dealClick: function () {
@@ -81,7 +83,9 @@
         },
         genHtmls: function (type) {
             var htmls = [];
-            type = type || 'num';
+            this.ck_total = 0; 
+	    this.ex_total = 0;
+	    type = type || 'num';
             this.expose_arr.sort(function (a, b) {
                 return b[type] - a[type];
             });
@@ -97,10 +101,14 @@
                         nums = [item.per + '%', item.ck_num, item.num];
                     break;
                 }
-
+		this.ck_total += parseInt(item.ck_num);
+		this.ex_total += parseInt(item.num);
                 htmls.push('<div><span>'+ item.title +'</span><em>' + nums.join('/'));
                 htmls.push('</em><img width="100%" height="auto" data-original="' + item.src + '"/></div>');
             }
+	    $('a[at="baoguang"]').attr('title', '总曝光量：' + this.ex_total);
+	    $('a[at="dianji"]').attr('title', '总点击量：' + this.ck_total);
+	    $('a[at="dianjilv"]').attr('title', '总点击率：' + (this.ck_total * 100 / this.ex_total).toFixed(2) + '%');
             out.innerHTML = htmls.join('');
             $("img").lazyload({effect: "fadeIn", placeholder : "../sum/load.gif",});
         },
@@ -152,4 +160,4 @@
 </script>
 </body>
 </html>
-    
+ 

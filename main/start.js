@@ -27,7 +27,7 @@ var transFile = {
         var self = this;
         var filename = path.join(__dirname, '../src/') + self.name;
         var exec = require('child_process').exec;
-        var cmdstr = "cat " + path.join(__dirname, "../out_log.log") + " | grep " + self.name + ":http > " + filename + "-first.log && sed 's/^....\-..\-.. ..\:..\: //g' " + filename + "-first.log > " + filename + "-one.log && sed -e 's/\&\&\&undefined//' " + filename + "-one.log > " + filename + "-second.log && sort " + filename + "-second.log > " + filename + "-tmp.log && uniq -c " + filename + "-tmp.log > " + filename + "-uniq.log && sort -nr " + filename + "-uniq.log > " + filename + "-first.log && sed -e 's/ *$/\",/' " + filename + "-first.log > " + filename + "-second.log && sed -e 's/^  */\"/' " + filename + "-second.log > " + filename + ".log && rm -f " + filename + "-*.log";
+        var cmdstr = "cat " + path.join(__dirname, "../out_log.log") + " | grep " + self.name + ":http > " + filename + "-first.log && sed 's/^....\-..\-.. ..\:..\: //g' " + filename + "-first.log > " + filename + "-one.log && sed -e 's/\&\&\&undefined//' " + filename + "-one.log > " + filename + "-second.log && sort " + filename + "-second.log > " + filename + "-tmp.log && uniq -c " + filename + "-tmp.log > " + filename + "-uniq.log && sort -nr " + filename + "-uniq.log > " + filename + "-first.log && sed -e 's/ *$/\",/' " + filename + "-first.log > " + filename + "-second.log && sed -e 's/^ */\"/' " + filename + "-second.log > " + filename + ".log && rm -f " + filename + "-*.log";
         console.log(cmdstr);
         files.splice(0, 1);
         exec(cmdstr, function(err,stdout,stderr){
