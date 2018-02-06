@@ -124,6 +124,9 @@
 
             location.pathname = location.pathname.replace(/([\d-]+)\.html/, '-' + dst + '.html');
         },
+	top: function(){
+	    document.body.scrollTop = document.documentElement.scrollTop = 0;
+	},
         formatTime: function (time, timeFormat) {
             if (typeof time==='number') {
                 time = new Date(time * 1000);

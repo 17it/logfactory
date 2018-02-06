@@ -18,6 +18,8 @@
         .cop a { cursor: pointer;  padding: 3px 10px; color: #fff; border-radius: 3px; text-align: left; float: right;margin: 5px; display: inline-block; }
         .cop a[type], .cop i { float: left; }
         .cop a.disabled { background-color: #eee !important;  cursor: auto; }
+	#top { position: fixed;background: #5bc0de;padding: 13px 10px 5px 10px;color: #fff;font-size: 30px;line-height: 20px;border-radius: 5px;bottom: 60px;z-index: 99;right: calc(5% - 25px);cursor: pointer;user-select: none; }
+	.wild #top {right: calc(5% - 45px);}
     </style>
 </head>
 <body>
@@ -35,6 +37,7 @@
             <div style="clear: both;"></div>
 	</div>
     </div>
+    <div id="top" onclick="util.top();">^</div>
     <div id="out">
 
     </div>
