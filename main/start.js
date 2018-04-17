@@ -32,7 +32,8 @@ var transFile = {
         console.log(cmdstr);
         files.splice(0, 1);
         exec(cmdstr, function(err,stdout,stderr){
-            if(err) {
+            if(err && stderr) {
+                console.log(err);
                 console.log('cat out_log.log error: '+ stderr);
                 return;
             }
