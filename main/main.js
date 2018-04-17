@@ -3,7 +3,8 @@ var path = require('path');
 var args = process.argv.splice(2);
 var head = '', foot = '', head_exp = '', foot_exp = '';
 var ft = require('../util/formatTime');
-var files = ['cp','cl','cn','cf','ep','el','en','ef'];
+var files = ['cp','cn','cf','ep','en','ef'];
+//var files = ['cp','cl','cn','cf','ep','el','en','ef'];
 
 if(args.length > 0){
     files = [];
